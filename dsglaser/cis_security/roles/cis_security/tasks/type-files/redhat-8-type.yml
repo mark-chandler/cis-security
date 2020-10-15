@@ -82,7 +82,7 @@
 
   # Create and configure the local-fs systemd service file
   - name: 1.1.[2-5] - Ensure /tmp is configured
-    block:       
+    block:
       # Create a file to hold the system specific local-fs service information
       #  be sure to set the selinux security context. Even if selinux is disabled,
       #  it's a good idea to make sure it is set on files
