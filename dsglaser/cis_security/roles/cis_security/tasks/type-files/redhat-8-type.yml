@@ -94,20 +94,21 @@
           group: root
           mode: 0755
           setype: etc_t
-
-      # Add content to the file we created using the blockinfile command.
-      # Notify systemd to reload its daemons and start the local-fs service
-      - name: 1.1.[2-5] - Configure config file for tmpfs
-        blockinfile:
-          path: /etc/systemd/system/local-fs.target.wants/tmp.mount
-          block: |
-            [Mount]
-            What=tmpfs
-            Where=/tmp
-            Type=tmpfs
-            Options=mode=1777,strictatime,noexec,nodev,nosuid
-          create: true
         notify: restart tmpfs
+        
+#       # Add content to the file we created using the blockinfile command.
+#       # Notify systemd to reload its daemons and start the local-fs service
+#       - name: 1.1.[2-5] - Configure config file for tmpfs
+#         blockinfile:
+#           path: /etc/systemd/system/local-fs.target.wants/tmp.mount
+#           block: |
+#             [Mount]
+#             What=tmpfs
+#             Where=/tmp
+#             Type=tmpfs
+#             Options=mode=1777,strictatime,noexec,nodev,nosuid
+#           create: true
+#         notify: restart tmpfs
     tags:
       - 1.1.2
       - 1.1.3
