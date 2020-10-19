@@ -41,6 +41,14 @@
     name: postfix
     state: restarted
 
+- name: restart tmpfs
+  systemd:
+    name: tmp.mount
+    state: restarted
+    enabled: yes
+    masked: no
+    daemon_reload: yes
+
 - name: start firewalld
   service:
     name: firewalld
@@ -50,14 +58,6 @@
   service:
     name: iptables
     state: started
-
-- name: restart tmpfs
-  systemd:
-    name: tmp.mount
-    state: restarted
-    enabled: yes
-    masked: no
-    daemon_reload: yes
 
 # Call the grub config file rebuilding program
 # There is no grub module, so we have to do it with shell
